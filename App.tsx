@@ -1,15 +1,18 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import Main from "./src/components/Main";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./src/services/react-query/query-client";
 
 export default function App() {
   return (
-    <PaperProvider>
-      <View style={styles.container}>
-        <Main />
-      </View>
-    </PaperProvider>
+    <QueryClientProvider client={queryClient}>
+      <PaperProvider>
+        <View style={styles.container}>
+          <Main />
+        </View>
+      </PaperProvider>
+    </QueryClientProvider>
   );
 }
 
