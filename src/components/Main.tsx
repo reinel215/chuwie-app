@@ -1,17 +1,21 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { Button } from "react-native-paper";
+import { View } from "react-native";
+import { Button, Text } from "react-native-paper";
+import { theme } from "../config/theme-config";
 
 const Main = () => {
   return (
     <View>
       <Text> Chuwie App </Text>
+
       <Button
         icon="camera"
         mode="contained"
         onPress={() => console.log("Pressed")}
       >
-        Press me
+        <Text theme={{ colors: { text: theme.colors.textPrimary } }}>
+          Chuwie App
+        </Text>
       </Button>
     </View>
   );
