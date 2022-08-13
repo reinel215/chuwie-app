@@ -4,14 +4,16 @@ import Main from "./src/components/Main";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./src/services/react-query/query-client";
 import { theme } from "./src/config/theme-config";
+import { NavigationContainer } from "@react-navigation/native";
+import { MainNavigator } from "./src/components/Navigation/MainNavigator/MainNavigator";
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={theme}>
-        <View style={styles.container}>
-          <Main />
-        </View>
+        <NavigationContainer>
+          <MainNavigator/>
+        </NavigationContainer>
       </PaperProvider>
     </QueryClientProvider>
   );
