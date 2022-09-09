@@ -8,11 +8,12 @@ import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInp
 import { PasswordInput } from "../../Atoms/PasswordInput/PasswordInput";
 import { Row } from "../../Atoms/Row/Row";
 import { useForm } from "react-hook-form";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 
 export const LoginForm = () => {
     const { control } = useForm();
-
+    const navigation = useNavigation<NavigationProp<any>>();
 
     return (
         <View style={styles.contentWrapper} >
@@ -50,7 +51,7 @@ export const LoginForm = () => {
 
 
                 <View style={styles.formBottomButtonsWrapper}>
-                    <CustomButton text={"Iniciar sesión"} />
+                    <CustomButton text={"Iniciar sesión"} onPress={() => {}} />
                 </View>
 
 
@@ -61,7 +62,7 @@ export const LoginForm = () => {
                             Aun no tienes una cuenta ?
                         </Text>
 
-                        <LinkButton text="Registrate" onPress={() => { }} />
+                        <LinkButton text="Registrate" onPress={() => navigation.navigate("Register")} />
                     </Row>
 
                 </View>

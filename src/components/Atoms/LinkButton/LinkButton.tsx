@@ -10,9 +10,9 @@ interface ILinkButtonProps {
 }
 
 
-export const LinkButton = ({ text }: ILinkButtonProps) => {
+export const LinkButton = ({ text, onPress }: ILinkButtonProps) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress} >
             <Text theme={{ colors: { text: theme.colors.primary } }}>
                 {text}
             </Text>
