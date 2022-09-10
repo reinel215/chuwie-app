@@ -7,6 +7,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { TouchableOpacity } from "react-native";
 import { INavigationScreenProp } from "../../../types/share/ITextInput/INavigationScreenProp";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { ForgotPassword } from "../../Screen/ForgotPassword/ForgotPassword";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,21 @@ export const AuthNavigator = () => {
                 component={Register}
                 options={{
                     title: "Registro",
+                    headerTitleAlign: "center",
+                    headerLeft: () => (
+                        <TouchableOpacity onPress={() => navigation.goBack()} >
+                            <FontAwesome name="chevron-left" size={16} />
+                        </TouchableOpacity>
+                    )
+                }}
+            />
+
+
+            <Stack.Screen 
+                name="ForgotPassword"
+                component={ForgotPassword}
+                options={{
+                    title: "Recuperar contraseña",
                     headerTitleAlign: "center",
                     headerLeft: () => (
                         <TouchableOpacity onPress={() => navigation.goBack()} >

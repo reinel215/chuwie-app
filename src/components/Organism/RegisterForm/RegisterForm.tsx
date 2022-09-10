@@ -18,7 +18,7 @@ export const RegisterForm = () => {
             <ScrollView>
                 <Text style={styles.verticalMargin}>Crea una cuenta</Text>
 
-                <Text style={styles.verticalMargin}>Al crear una cuenta podras; reportar incidentes que pongan en peligro a las perezas,  </Text>
+                <Text style={styles.verticalMargin}>Al crear una cuenta podras; reportar incidentes que pongan en peligro a las perezas, hacer un seguimiento del rescate y ver otras perezas rescatadas </Text>
 
 
                 <View style={styles.verticalMargin}>

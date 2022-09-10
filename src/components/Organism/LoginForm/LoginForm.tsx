@@ -45,7 +45,7 @@ export const LoginForm = () => {
 
 
                 <View style={styles.forgotPasswordTextWrapper}>
-                    <LinkButton text="Olvidaste la contraseña?" onPress={() => { }} />
+                    <LinkButton text="Olvidaste la contraseña?" onPress={() => navigation.navigate("ForgotPassword")} />
                 </View>
 
 
