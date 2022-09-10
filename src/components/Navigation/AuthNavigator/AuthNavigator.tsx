@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Button } from "react-native-paper";
 import { Login } from "../../Screen/Login/Login";
 import { Register } from "../../Screen/Register/Register";
-import FontAwesome from '@expo/vector-icons/FontAwesome'
+import AntDesign from '@expo/vector-icons/AntDesign';
 import { TouchableOpacity } from "react-native";
-import { INavigationScreenProp } from "../../../types/share/ITextInput/INavigationScreenProp";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { ForgotPassword } from "../../Screen/ForgotPassword/ForgotPassword";
+import { SetEmailVerificationCode } from "../../Screen/SetEmailVerificationCode/SetEmailVerificationCode";
+import { CreateNewPassword } from "../../Screen/CreateNewPassword/CreateNewPassword";
+import { PasswordCreatedSuccess } from "../../Screen/PasswordCreatedSuccess/PasswordCreatedSuccess";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,14 +34,14 @@ export const AuthNavigator = () => {
                     headerTitleAlign: "center",
                     headerLeft: () => (
                         <TouchableOpacity onPress={() => navigation.goBack()} >
-                            <FontAwesome name="chevron-left" size={16} />
+                            <AntDesign name="left" size={20} />
                         </TouchableOpacity>
                     )
                 }}
             />
 
 
-            <Stack.Screen 
+            <Stack.Screen
                 name="ForgotPassword"
                 component={ForgotPassword}
                 options={{
@@ -48,9 +49,54 @@ export const AuthNavigator = () => {
                     headerTitleAlign: "center",
                     headerLeft: () => (
                         <TouchableOpacity onPress={() => navigation.goBack()} >
-                            <FontAwesome name="chevron-left" size={16} />
+                            <AntDesign name="left" size={20} />
                         </TouchableOpacity>
                     )
+                }}
+            />
+
+
+
+            <Stack.Screen
+                name="SetEmailVerificationCode"
+                component={SetEmailVerificationCode}
+                options={{
+                    title: "Recuperar contraseña",
+                    headerTitleAlign: "center",
+                    headerLeft: () => (
+                        <TouchableOpacity onPress={() => navigation.goBack()} >
+                            <AntDesign name="left" size={20} />
+                        </TouchableOpacity>
+                    )
+                }}
+            />
+
+            <Stack.Screen
+                name="CreateNewPassword"
+                component={CreateNewPassword}
+                options={{
+                    title: "Recuperar contraseña",
+                    headerTitleAlign: "center",
+                    headerLeft: () => (
+                        <TouchableOpacity onPress={() => navigation.goBack()} >
+                            <AntDesign name="left" size={20} />
+                        </TouchableOpacity>
+                    )
+                }}
+            />
+
+
+            <Stack.Screen
+                name="PasswordCreatedSuccess"
+                component={PasswordCreatedSuccess}
+                options={{
+                    title: "",
+                    headerRight: () => (
+                        <TouchableOpacity onPress={() => navigation.navigate("Login")} >
+                            <AntDesign name="close" size={24} />
+                        </TouchableOpacity>
+                    ),
+                    headerBackVisible: false
                 }}
             />
         </Stack.Navigator>

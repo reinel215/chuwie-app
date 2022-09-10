@@ -8,34 +8,32 @@ import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInp
 
 
 
-export const ForgotPasswordForm = () => {
+export const SetEmailVerificationCodeForm = () => {
 
     const { control } = useForm();
-
     const navigation = useNavigation<NavigationProp<any>>();
 
     return (
         <View style={styles.container}>
 
-            <Text style={styles.verticalMargin}>Has olvidado la contraseña.</Text>
+            <Text style={styles.verticalMargin}>Hola usuario!</Text>
 
-            <Text style={styles.verticalMargin}>Para resetearla ingresa tu correo y enviaremos un codigo para crear una nueva. </Text>
+            <Text style={styles.verticalMargin}>We sent you a verification code to user@email.com. copy and paste that code below.</Text>
 
             <View style={styles.verticalMargin}>
                 <OutlinedTextInput
-                    label="Correo electronico"
+                    label="Codigo"
                     control={control}
-                    name="email"
+                    name="code"
                 />
             </View>
 
             <View style={styles.buttonWrapper} >
-                <CustomButton text={"Continuar"} onPress={() => navigation.navigate("SetEmailVerificationCode")} />
+                <CustomButton text={"Reenviar codigo"} onPress={() => navigation.navigate("CreateNewPassword")} />
             </View>
         </View>
     )
 }
-
 
 
 

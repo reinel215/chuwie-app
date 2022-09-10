@@ -7,37 +7,39 @@ import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
 import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
 
 
-
-export const ForgotPasswordForm = () => {
+export const CreateNewPasswordForm = () => {
 
     const { control } = useForm();
-
     const navigation = useNavigation<NavigationProp<any>>();
 
     return (
         <View style={styles.container}>
 
-            <Text style={styles.verticalMargin}>Has olvidado la contraseña.</Text>
-
-            <Text style={styles.verticalMargin}>Para resetearla ingresa tu correo y enviaremos un codigo para crear una nueva. </Text>
+            <Text style={styles.verticalMargin}>Ingresa tu nueva contraseña</Text>
 
             <View style={styles.verticalMargin}>
                 <OutlinedTextInput
-                    label="Correo electronico"
+                    label="Nueva contraseña"
                     control={control}
-                    name="email"
+                    name="password"
                 />
             </View>
 
+            <View style={styles.verticalMargin}>
+                <OutlinedTextInput
+                    label="Confirme la nueva contraseña"
+                    control={control}
+                    name="confirmPassword"
+                />
+            </View>
+
+
             <View style={styles.buttonWrapper} >
-                <CustomButton text={"Continuar"} onPress={() => navigation.navigate("SetEmailVerificationCode")} />
+                <CustomButton text={"Continuar"} onPress={() => navigation.navigate("PasswordCreatedSuccess")} />
             </View>
         </View>
     )
 }
-
-
-
 
 
 const styles = StyleSheet.create({
