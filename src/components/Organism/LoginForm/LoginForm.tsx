@@ -11,8 +11,12 @@ import { useForm } from "react-hook-form";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 
-export const LoginForm = () => {
-    const { control } = useForm();
+interface LoginFormProps {
+    onLogin: () => void;
+}
+
+export const LoginForm = ({ onLogin }: LoginFormProps) => {
+    const { control, handleSubmit } = useForm();
     const navigation = useNavigation<NavigationProp<any>>();
 
     return (
@@ -51,7 +55,7 @@ export const LoginForm = () => {
 
 
                 <View style={styles.formBottomButtonsWrapper}>
-                    <CustomButton text={"Iniciar sesión"} onPress={() => {}} />
+                    <CustomButton text={"Iniciar sesión"} onPress={handleSubmit(onLogin)} />
                 </View>
 
 
