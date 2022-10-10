@@ -9,6 +9,6 @@ interface UseUserStoreSate {
 
 
 export const useUserStore = create<UseUserStoreSate>((set) => ({
-    isAuth: false,
+    isAuth: true,
     setAuth: (isAuth) => set({ isAuth })
 }))

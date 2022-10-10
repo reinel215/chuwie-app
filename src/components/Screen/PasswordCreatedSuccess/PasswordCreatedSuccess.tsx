@@ -1,5 +1,5 @@
 import React from "react";
-import { INavigationScreenProp } from "../../../types/share/ITextInput/INavigationScreenProp";
+import { INavigationScreenProp } from "../../../types/share/INavigationScreenProp";
 import { SafeAreaWrapper } from "../../Atoms/SafeAreaWrapper/SafeAreaWrapper";
 import { UserFeedback } from "../../Organism/UserFeedback/UserFeedback";
 

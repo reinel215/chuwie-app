@@ -2,9 +2,41 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
+import { ISelectData } from "../../../types/share/ISelectData";
 import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
 import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
 import { PasswordInput } from "../../Atoms/PasswordInput/PasswordInput";
+import { Select } from "../../Atoms/Select/Select";
+
+
+
+const roles: ISelectData[] = [
+    {
+        label: "Veterinario",
+        value: "veterinario"
+    },
+    {
+        label: "Rescatista",
+        value: "rescatista"
+    },
+    {
+        label: "Soporte",
+        value: "soporte"
+    },
+    {
+        label: "Administrativo",
+        value: "administrativo"
+    },
+    {
+        label: "Legal",
+        value: "legal"
+    },
+    {
+        label: "Alimentos",
+        value: "alimentos"
+    }
+]
+
 
 
 export const RegisterForm = () => {
@@ -65,6 +97,16 @@ export const RegisterForm = () => {
                 </View>
 
                 <View style={styles.verticalMargin}>
+                    <Select
+                        label="Tipo de usuario"
+                        control={control}
+                        name="role"
+                        data={roles}
+                    />
+                </View>
+
+
+                <View style={styles.verticalMargin}>
 
                     <PasswordInput
                         label="Crea tu contraseña"
@@ -96,7 +138,6 @@ export const RegisterForm = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 16
     },
     verticalMargin: {
         marginBottom: 16

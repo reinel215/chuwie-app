@@ -6,5 +6,5 @@ export interface ITextInput {
     name: string;
     label: string;
     control: Control<FieldValues, any>;
-    rules?: any
+    rules?: Object
 }
