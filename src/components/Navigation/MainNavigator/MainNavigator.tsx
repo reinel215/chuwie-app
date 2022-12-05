@@ -8,7 +8,7 @@ import { MenuDrawerNavigator } from "../MenuDrawerNavigator/MenuDrawerNavigator"
 
 export const MainNavigator = () => {
 
-    const isAuth = useUserStore(state => state.isAuth);
+    const isAuth = useUserStore(state => state.isAuth);    
 
     return (
         <>

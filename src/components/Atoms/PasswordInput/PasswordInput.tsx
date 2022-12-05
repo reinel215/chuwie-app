@@ -22,7 +22,7 @@ export const PasswordInput = ({ name, label, control, rules }: ITextInput) => {
                     mode="outlined"
                     right={<TextInput.Icon name={hiddePassword ? "eye-outline" : "eye-off-outline"} onPress={() => setHiddePassword(!hiddePassword)} />}
                     value={field.value}
-                    onChange={field.onChange}
+                    onChangeText={field.onChange}
                 />
             )}
         />

@@ -16,7 +16,7 @@ export const OutlinedTextInput = ({ name, label, control, rules } : ITextInput) 
                     label={label}
                     mode="outlined"
                     value={field.value}
-                    onChange={field.onChange}
+                    onChangeText={field.onChange}
                 />
             )}
         />

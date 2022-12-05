@@ -12,7 +12,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 
 interface LoginFormProps {
-    onLogin: () => void;
+    onLogin: (body : any) => void;
 }
 
 export const LoginForm = ({ onLogin }: LoginFormProps) => {

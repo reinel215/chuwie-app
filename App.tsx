@@ -11,7 +11,7 @@ import * as SecureStore from "expo-secure-store";
 import { useEffect } from "react";
 import { IS_AUTH } from "./src/constants/secureStoreKeyNames/secureStoreKeyNames";
 import { useUserStore } from "./src/store/useUserStore";
-
+import { ToastProvider } from "react-native-toast-notifications";
 
 
 // Keep the splash screen visible while we fetch resources
@@ -36,10 +36,17 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <MainNavigator />
-        </NavigationContainer>
+
+        <ToastProvider>
+          <NavigationContainer>
+            <MainNavigator />
+          </NavigationContainer>
+        </ToastProvider>
+
       </PaperProvider>
     </QueryClientProvider>
   );
 }
+
+
+
