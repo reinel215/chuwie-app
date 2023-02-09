@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { ISelectData } from "../../../types/share/ISelectData";
+import { UserFormData } from "../../../types/share/ITextInput/User";
 import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
 import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
 import { PasswordInput } from "../../Atoms/PasswordInput/PasswordInput";
@@ -37,17 +38,20 @@ const roles: ISelectData[] = [
     }
 ]
 
+interface RegisterFormProps {
+    onRegister : (user : UserFormData) => void
+    isLoading? : boolean;
+}
 
+export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
 
-export const RegisterForm = () => {
-
-    const { control } = useForm<any>();
+    const { control, handleSubmit } = useForm<any>();
 
 
     return (
         <View style={styles.container}>
 
-            <ScrollView>
+            <ScrollView contentContainerStyle={{paddingHorizontal: 16}}>
                 <Text style={styles.verticalMargin}>Crea una cuenta</Text>
 
                 <Text style={styles.verticalMargin}>Al crear una cuenta podras; reportar incidentes que pongan en peligro a las perezas, hacer un seguimiento del rescate y ver otras perezas rescatadas </Text>
@@ -83,7 +87,7 @@ export const RegisterForm = () => {
                     <OutlinedTextInput
                         label="País"
                         control={control}
-                        name="email"
+                        name="country"
                     />
                 </View>
 
@@ -92,7 +96,7 @@ export const RegisterForm = () => {
                     <OutlinedTextInput
                         label="Documento de identidad"
                         control={control}
-                        name="email"
+                        name="docNumber"
                     />
                 </View>
 
@@ -120,14 +124,14 @@ export const RegisterForm = () => {
                     <PasswordInput
                         label="Confirma tu contraseña"
                         control={control}
-                        name="password"
+                        name="confirmPassword"
                     />
                 </View>
             </ScrollView>
 
 
             <View style={styles.buttonWrapper} >
-                <CustomButton text={"Crear cuenta"} onPress={() => { }} />
+                <CustomButton text={"Crear cuenta"} onPress={handleSubmit(onRegister)} loading={isLoading}/>
             </View>
         </View>
     )

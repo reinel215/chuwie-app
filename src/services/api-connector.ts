@@ -1,6 +1,7 @@
 import { ApiService } from "./ApiService";
+import env from '../../env.json';
 
-const baseDomain : any = process.env.REACT_APP_LOCAL_API_URL;
+const baseDomain : any = env.baseUrl;
 
 const connectionConfig = {
   baseUrl: baseDomain,

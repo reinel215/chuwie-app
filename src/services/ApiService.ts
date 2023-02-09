@@ -3,7 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 export class ApiService {
   private readonly instance: AxiosInstance;
 
-  constructor({ baseUrl, headers }: { baseUrl: string; headers?: any }) {
+  constructor({ baseUrl, headers }: { baseUrl: string; headers?: any }) {    
     this.instance = axios.create({
       baseURL: baseUrl,
       timeout: 60000,
