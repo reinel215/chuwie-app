@@ -20,6 +20,10 @@ export interface UserFormData {
     role: ISelectData
 }
 
+export interface ResetPasswordForm {
+    email: string
+}
+
 
 export interface UserFormRequest extends UserFormData {
     role : UserRole;

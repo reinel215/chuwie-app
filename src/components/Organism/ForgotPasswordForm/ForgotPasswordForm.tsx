@@ -1,18 +1,23 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
+import { ResetPasswordForm } from "../../../types/share/ITextInput/User";
 import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
 import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
 
 
+interface ForgotPasswordFormProps {
+    onCreateNewPassword: ({ email }: ResetPasswordForm) => Promise<void>
+}
 
-export const ForgotPasswordForm = () => {
 
-    const { control } = useForm();
 
-    const navigation = useNavigation<NavigationProp<any>>();
+export const ForgotPasswordForm = ({ onCreateNewPassword }: ForgotPasswordFormProps) => {
+
+    const { control, handleSubmit } = useForm<ResetPasswordForm>();
+
 
     return (
         <View style={styles.container}>
@@ -30,7 +35,7 @@ export const ForgotPasswordForm = () => {
             </View>
 
             <View style={styles.buttonWrapper} >
-                <CustomButton text={"Continuar"} onPress={() => navigation.navigate("SetEmailVerificationCode")} />
+                <CustomButton text={"Continuar"} onPress={handleSubmit(onCreateNewPassword)} />
             </View>
         </View>
     )

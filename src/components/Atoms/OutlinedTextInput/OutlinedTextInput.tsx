@@ -1,5 +1,5 @@
 import React from "react";
-import { Controller } from "react-hook-form"
+import { Control, Controller, FieldPath, FieldValues, RegisterOptions } from "react-hook-form"
 import { TextInput } from "react-native-paper";
 import { ITextInput } from "../../../types/share/ITextInput/ITextInput";
 
