@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Dimensions, StyleSheet, Touchable, TouchableOpacity, View } from "react-native";
 import { SafeAreaWrapper } from "../../Atoms/SafeAreaWrapper/SafeAreaWrapper";
 import { theme } from "../../../config/theme-config";
@@ -7,8 +7,28 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Row } from "../../Atoms/Row/Row";
 import { Text } from "react-native-paper";
 import { HorizontalLine } from "../../Atoms/HorizontalLine/HorizontalLine";
+import { useUserStore } from "../../../store/useUserStore";
 
 export const Profile = () => {
+
+    const getCurrentUserFetch = useUserStore(state => state.getCurrentUserFetch);
+
+    useEffect(() => {
+
+        async function asyncFetch(){
+            try{
+                await getCurrentUserFetch()
+
+            }catch(error){
+
+            }
+        }
+
+        asyncFetch();
+    }, [])
+
+
+
     return (
         <SafeAreaWrapper style={{ paddingHorizontal: 0 }}>
             <View style={styles.topBarContainer}>

@@ -3,9 +3,10 @@ import React from "react";
 import { useUserStore } from "../../../store/useUserStore";
 import { Home } from "../../Screen/Home/Home";
 import * as SecureStore from "expo-secure-store";
-import { IS_AUTH } from "../../../constants/secureStoreKeyNames/secureStoreKeyNames";
+import { IS_AUTH, TOKEN } from "../../../constants/secureStoreKeyNames/secureStoreKeyNames";
 import { CreateSubUser } from "../../Screen/CreateSubUser/CreateSubUser";
 import { Profile } from "../../Screen/Profile/Profile";
+import { useTokenStore } from "../../../store/token/useTokenStore";
 
 const Drawer = createDrawerNavigator();
 
@@ -42,10 +43,13 @@ export const MenuDrawerNavigator = () => {
 const CustomDrawerContent = ({ navigation } : DrawerContentComponentProps) => {
 
     const setIsAuth = useUserStore(state => state.setAuth);
+    const setAccessToken = useTokenStore(state => state.setAccessToken);
 
     const logout = () => {
-        SecureStore.deleteItemAsync(IS_AUTH);
+        SecureStore.deleteItemAsync(IS_AUTH)
+        SecureStore.deleteItemAsync(TOKEN)
         setIsAuth(false)
+        setAccessToken("")
     }
 
     return (

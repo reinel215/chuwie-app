@@ -1,4 +1,5 @@
 import React from "react";
+import { useTokenStore } from "../../../store/token/useTokenStore";
 import { useUserStore } from "../../../store/useUserStore";
 import { AuthNavigator } from "../AuthNavigator/AuthNavigator";
 import { MenuDrawerNavigator } from "../MenuDrawerNavigator/MenuDrawerNavigator";
@@ -8,7 +9,7 @@ import { MenuDrawerNavigator } from "../MenuDrawerNavigator/MenuDrawerNavigator"
 
 export const MainNavigator = () => {
 
-    const isAuth = useUserStore(state => state.isAuth);    
+    const isAuth = useTokenStore(state => state.isAuth);    
 
     return (
         <>

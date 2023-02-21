@@ -1,14 +1,16 @@
 import { AxiosError } from "axios"
 
 
-interface ResponseError {
+interface ResponseError extends AxiosError {
     data: {
         error: string;
     }
 }
 
 export const handleAxiosError = (error: any) : string => {
+    
     const err = error as ResponseError;
-    return err.data.error
+    console.error(err);
+    return err?.data?.error
 }
 

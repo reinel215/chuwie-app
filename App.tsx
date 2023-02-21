@@ -9,9 +9,9 @@ import { MainNavigator } from "./src/components/Navigation/MainNavigator/MainNav
 import * as SplashScreen from "expo-splash-screen";
 import * as SecureStore from "expo-secure-store";
 import { useEffect } from "react";
-import { IS_AUTH } from "./src/constants/secureStoreKeyNames/secureStoreKeyNames";
-import { useUserStore } from "./src/store/useUserStore";
+import { IS_AUTH, TOKEN } from "./src/constants/secureStoreKeyNames/secureStoreKeyNames";
 import { ToastProvider } from "react-native-toast-notifications";
+import { useTokenStore } from "./src/store/token/useTokenStore";
 
 
 // Keep the splash screen visible while we fetch resources
@@ -20,12 +20,19 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
 
 
-  const setIsAuth = useUserStore(state => state.setAuth);
+  const setIsAuth = useTokenStore(state => state.setAuth);
+  const setAccessToken = useTokenStore(state => state.setAccessToken);
 
   useEffect(() => {
     async function prepare() {
       const isAuth = await SecureStore.getItemAsync(IS_AUTH);
-      if (isAuth) setIsAuth(true)
+      if (isAuth) setIsAuth(true);
+
+      const token = await SecureStore.getItemAsync(TOKEN);
+      token && await setAccessToken(token);
+
+      console.log("ESTE ES EL TOKEN ", token);
+      
       SplashScreen.hideAsync();
     }
 
