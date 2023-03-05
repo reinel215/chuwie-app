@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaWrapper } from "../../Atoms/SafeAreaWrapper/SafeAreaWrapper";
 import { ForgotPasswordForm } from "../../Organism/ForgotPasswordForm/ForgotPasswordForm";
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
-import { ResetPasswordForm } from "../../../types/share/ITextInput/User";
+import { ResetPasswordForm } from "../../../types/share/User";
 import { app } from "../../../config/firebase";
 
 

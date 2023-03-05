@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { ISelectData } from "../../../types/share/ISelectData";
-import { UserFormData } from "../../../types/share/ITextInput/User";
+import { UserFormData, UserRole } from "../../../types/share/User";
 import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
 import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
 import { PasswordInput } from "../../Atoms/PasswordInput/PasswordInput";
@@ -14,27 +14,27 @@ import { Select } from "../../Atoms/Select/Select";
 const roles: ISelectData[] = [
     {
         label: "Veterinario",
-        value: "veterinario"
+        value: UserRole.VETERINARIO
     },
     {
         label: "Rescatista",
-        value: "rescatista"
+        value: UserRole.RESCATISTA
     },
     {
         label: "Soporte",
-        value: "soporte"
+        value: UserRole.SOPORTE
     },
     {
         label: "Administrativo",
-        value: "administrativo"
+        value: UserRole.ADMINISTRATIVO
     },
     {
         label: "Legal",
-        value: "legal"
+        value: UserRole.LEGAL
     },
     {
         label: "Alimentos",
-        value: "alimentos"
+        value: UserRole.ALIMENTOS
     }
 ]
 

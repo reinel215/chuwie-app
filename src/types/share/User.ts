@@ -1,4 +1,4 @@
-import { ISelectData } from "../ISelectData";
+import { ISelectData } from "./ISelectData";
 
 export enum UserRole {
     VETERINARIO = "veterinario",
@@ -25,6 +25,16 @@ export interface ResetPasswordForm {
 }
 
 
-export interface UserFormRequest extends UserFormData {
-    role : UserRole;
+export interface UserFormRequest extends Omit<UserFormData, "role"> {
+    role: UserRole;
+}
+
+export interface User {
+    country: string,
+    docNumber: string,
+    email: string,
+    lastname: string,
+    name: string,
+    role: UserRole,
+    uid: string,
 }

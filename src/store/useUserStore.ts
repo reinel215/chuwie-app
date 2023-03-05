@@ -1,7 +1,8 @@
 import create from 'zustand'
 import { getCurrentUser } from '../services/user/getCurrentUser';
 import { registerUser } from '../services/user/registerUser';
-import { UserFormData, UserFormRequest, UserRole } from '../types/share/ITextInput/User';
+import { UserFormData, UserFormRequest, UserRole } from '../types/share/User';
+import { User } from '../types/share/User';
 import { useTokenStore } from './token/useTokenStore';
 
 
@@ -13,7 +14,8 @@ interface UseUserStoreSate {
     registerUser: (user: UserFormData) => void;
     loadingGetUser: boolean;
     getCurrentUserFetch: () => Promise<void>;
-    
+    user: User | null;
+
 }
 
 
@@ -41,12 +43,14 @@ export const useUserStore = create<UseUserStoreSate>((set) => ({
         try {
             set({ loadingGetUser: true });
             const token = useTokenStore.getState().accessToken;
-            await getCurrentUser({ token })
+            const user = await getCurrentUser({ token })
+            set({ user })
 
         } catch (error) {
             throw error;
         } finally {
             set({ loadingGetUser: false });
         }
-    }
+    },
+    user: null
 }))

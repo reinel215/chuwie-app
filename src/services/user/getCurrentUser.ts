@@ -1,20 +1,19 @@
 import axios from "axios";
 import { handleAxiosError } from "../../helpers/handleAxiosError";
 import { ITokenRequest } from "../../types/share/ITokenRequest";
+import { User } from "../../types/share/User";
 import { apiConnector } from "../api-connector";
 
 
-export const getCurrentUser = async ({ token }: ITokenRequest) => {
+export const getCurrentUser = async ({ token }: ITokenRequest) : Promise<User> => {
     try {
-        console.log("Antes de la peticion");
         
-        const user = await apiConnector.get("users/currentUser", {
+        const user = await apiConnector.get<User>("users/currentUser", {
             headers: {
                 'Authorization': token
             }
         });
-
-        console.log("Este es el user ", user);
+        return user;
         
     } catch (error) {
         console.error("Error en getCurrentUser user");

@@ -42,7 +42,7 @@ export const MenuDrawerNavigator = () => {
 
 const CustomDrawerContent = ({ navigation } : DrawerContentComponentProps) => {
 
-    const setIsAuth = useUserStore(state => state.setAuth);
+    const setIsAuth = useTokenStore(state => state.setAuth);
     const setAccessToken = useTokenStore(state => state.setAccessToken);
 
     const logout = () => {

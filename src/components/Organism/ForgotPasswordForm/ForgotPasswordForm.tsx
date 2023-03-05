@@ -3,7 +3,7 @@ import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
-import { ResetPasswordForm } from "../../../types/share/ITextInput/User";
+import { ResetPasswordForm } from "../../../types/share/User";
 import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
 import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
 

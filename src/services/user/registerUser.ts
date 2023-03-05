@@ -1,5 +1,5 @@
 import { handleAxiosError } from "../../helpers/handleAxiosError";
-import { UserFormRequest } from "../../types/share/ITextInput/User";
+import { UserFormRequest } from "../../types/share/User";
 import { apiConnector } from "../api-connector";
 
 

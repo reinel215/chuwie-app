@@ -2,7 +2,7 @@ import React from "react";
 import { useToast } from "react-native-toast-notifications";
 import { useUserStore } from "../../../store/useUserStore";
 import { INavigationScreenProp } from "../../../types/share/INavigationScreenProp";
-import { UserFormData, UserFormRequest, UserRole } from "../../../types/share/ITextInput/User";
+import { UserFormData, UserFormRequest, UserRole } from "../../../types/share/User";
 import { SafeAreaWrapper } from "../../Atoms/SafeAreaWrapper/SafeAreaWrapper";
 import { RegisterForm } from "../../Organism/RegisterForm/RegisterForm";
 
