@@ -14,7 +14,7 @@ export const CustomButton = ({ text, onPress, loading = false }: ICustomButtonPr
         <Button
             mode="contained"
             onPress={onPress}
-            style={{ flex: 1, maxHeight: 50, justifyContent: "center", alignItems: "center", width: "100%" }}
+            style={{ flex: 1, height: 50, maxHeight: 50 , justifyContent: "center", alignItems: "center", width: "100%" }}
             loading={loading}
             disabled={loading}
         >

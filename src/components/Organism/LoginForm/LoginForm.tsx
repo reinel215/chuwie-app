@@ -12,10 +12,11 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 
 interface LoginFormProps {
-    onLogin: (body : any) => void;
+    onLogin: (body: any) => void;
+    loading: boolean;
 }
 
-export const LoginForm = ({ onLogin }: LoginFormProps) => {
+export const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
     const { control, handleSubmit } = useForm();
     const navigation = useNavigation<NavigationProp<any>>();
 
@@ -55,21 +56,20 @@ export const LoginForm = ({ onLogin }: LoginFormProps) => {
 
 
                 <View style={styles.formBottomButtonsWrapper}>
-                    <CustomButton text={"Iniciar sesión"} onPress={handleSubmit(onLogin)} />
+                    <CustomButton text={"Iniciar sesión"} onPress={handleSubmit(onLogin)} loading={loading} />
                 </View>
 
+            </View>
 
 
-                <View style={styles.signupButtonWrapper} >
-                    <Row style={styles.rowStyle} >
-                        <Text>
-                            Aun no tienes una cuenta ?
-                        </Text>
+            <View style={styles.signupButtonWrapper} >
+                <Row style={styles.rowStyle} >
+                    <Text>
+                        Aun no tienes una cuenta ?
+                    </Text>
 
-                        <LinkButton text="Registrate" onPress={() => navigation.navigate("Register")} />
-                    </Row>
-
-                </View>
+                    <LinkButton text="Registrate" onPress={() => navigation.navigate("Register")} />
+                </Row>
 
             </View>
 
@@ -82,51 +82,48 @@ export const LoginForm = ({ onLogin }: LoginFormProps) => {
 const styles = StyleSheet.create({
     contentWrapper: {
         flex: 1,
-        alignItems: "center"
+        alignItems: "center",
     },
     logoWrapper: {
-        flex: 3,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 60
     },
     logoStyle: {
         maxWidth: 200,
         maxHeight: 200
     },
     formWrapper: {
-        flex: 4,
         width: "100%",
-    },
-    marginVertical: {
-        marginVertical: 10
+        flex: 1,
     },
     forgotPasswordTextWrapper: {
         width: "100%",
         justifyContent: "flex-start",
         alignItems: "flex-end",
-        flex: 1,
         paddingVertical: 5,
     },
     formInputsWrapper: {
-        flex: 3,
         justifyContent: "space-between",
+        marginVertical: 16
     },
     formBottomButtonsWrapper: {
-        flex: 3,
         justifyContent: "center",
         alignItems: "center",
     },
     formTitleWrapper: {
-        flex: 1,
-        alignItems: "center"
+        alignItems: "center",
+        marginVertical: 32
     },
     rowStyle: {
         justifyContent: "center",
         marginTop: 10
     },
     signupButtonWrapper: {
-        flex: 2,
+        width: "100%",
+        padding: 10,
         justifyContent: "flex-start",
         alignItems: "center",
+        marginTop: 32,
     }
 });
