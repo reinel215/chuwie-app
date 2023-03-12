@@ -9,6 +9,7 @@ import { Text } from "react-native-paper";
 import { HorizontalLine } from "../../Atoms/HorizontalLine/HorizontalLine";
 import { useUserStore } from "../../../store/useUserStore";
 import { RowWithIcon } from "../../Molecules/RowWithIcon/RowWithIcon";
+import { Loading } from "../../Atoms/Loading/Loading";
 
 export const Profile = () => {
 
@@ -34,63 +35,75 @@ export const Profile = () => {
                     <FontAwesome name="user-circle" size={70} color={theme.colors.textPrimary} />
                 </View>
             </View>
-            <View style={{ paddingHorizontal: 16 }}>
 
-                <RowWithIcon
-                    renderText={() =>
-                        <View>
-                            <Text style={{ fontWeight: "900" }} >Nombre</Text>
-                            <Text>{user?.name}</Text>
+            {
+                loadingGetUser ?
+                    <Loading style={{ marginTop: 36 }} />
+
+                    :
+                    <>
+
+                        <View style={{ paddingHorizontal: 16 }}>
+
+                            <RowWithIcon
+                                renderText={() =>
+                                    <View>
+                                        <Text style={{ fontWeight: "900" }} >Nombre</Text>
+                                        <Text>{user?.name}</Text>
+                                    </View>
+                                }
+                                renderIcon={() => <MaterialIcons name="edit" size={25} color={theme.colors.primary} />}
+                            />
+
+
+
+
+                            <RowWithIcon
+                                renderText={() =>
+                                    <View>
+                                        <Text style={{ fontWeight: "900" }} >Apellido</Text>
+                                        <Text>{user?.lastname}</Text>
+                                    </View>
+                                }
+                                renderIcon={() => <MaterialIcons name="edit" size={25} color={theme.colors.primary} />}
+                            />
+
+
+                            <HorizontalLine wrapperStyle={{ marginTop: 16 }} />
+
+                            <Row style={styles.rowStyle}>
+                                <View>
+                                    <Text style={{ fontWeight: "900" }} >Correo</Text>
+                                    <Text>{user?.email}</Text>
+                                </View>
+                            </Row>
+
+                            <Row style={styles.rowStyle}>
+                                <View>
+                                    <Text style={{ fontWeight: "900" }} >Documento de identidad</Text>
+                                    <Text>{user?.docNumber}</Text>
+                                </View>
+                            </Row>
+
+                            <Row style={styles.rowStyle}>
+                                <View>
+                                    <Text style={{ fontWeight: "900" }} >Rol</Text>
+                                    <Text>{user?.role}</Text>
+                                </View>
+                            </Row>
+
+
+                            <Row style={styles.rowStyle}>
+                                <View>
+                                    <Text style={{ fontWeight: "900" }} >País</Text>
+                                    <Text>{user?.country}</Text>
+                                </View>
+                            </Row>
                         </View>
-                    }
-                    renderIcon={() => <MaterialIcons name="edit" size={25} color={theme.colors.primary} />}
-                />
+                    </>
 
+            }
 
-
-
-                <RowWithIcon
-                    renderText={() =>
-                        <View>
-                            <Text style={{ fontWeight: "900" }} >Apellido</Text>
-                            <Text>{user?.lastname}</Text>
-                        </View>
-                    }
-                    renderIcon={() => <MaterialIcons name="edit" size={25} color={theme.colors.primary} />}
-                />
-
-
-                <HorizontalLine wrapperStyle={{ marginTop: 16 }} />
-
-                <Row style={styles.rowStyle}>
-                    <View>
-                        <Text style={{ fontWeight: "900" }} >Correo</Text>
-                        <Text>{user?.email}</Text>
-                    </View>
-                </Row>
-
-                <Row style={styles.rowStyle}>
-                    <View>
-                        <Text style={{ fontWeight: "900" }} >Documento de identidad</Text>
-                        <Text>{user?.docNumber}</Text>
-                    </View>
-                </Row>
-
-                <Row style={styles.rowStyle}>
-                    <View>
-                        <Text style={{ fontWeight: "900" }} >Rol</Text>
-                        <Text>{user?.role}</Text>
-                    </View>
-                </Row>
-
-
-                <Row style={styles.rowStyle}>
-                    <View>
-                        <Text style={{ fontWeight: "900" }} >País</Text>
-                        <Text>{user?.country}</Text>
-                    </View>
-                </Row>
-            </View>
         </SafeAreaWrapper>
     )
 }
