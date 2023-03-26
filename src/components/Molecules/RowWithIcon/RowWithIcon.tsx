@@ -7,16 +7,17 @@ import { Row } from '../../Atoms/Row/Row';
 interface RowWithIconProps {
     renderIcon: () => React.ReactNode;
     renderText: () => React.ReactNode;
+    onPressIcon?: () => void;
 }
 
-export const RowWithIcon = ({ renderIcon, renderText } : RowWithIconProps) => {
+export const RowWithIcon = ({ renderIcon, renderText, onPressIcon } : RowWithIconProps) => {
     return (
         <Row style={styles.rowStyle}>
             {
                 renderText?.()
             }
             <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onPressIcon}>
                     {renderIcon?.()}
                 </TouchableOpacity>
             </View>

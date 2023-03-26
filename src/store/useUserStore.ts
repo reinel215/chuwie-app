@@ -1,6 +1,7 @@
 import create from 'zustand'
 import { getCurrentUser } from '../services/user/getCurrentUser';
 import { registerUser } from '../services/user/registerUser';
+import { updateUser as updateUserService } from '../services/user/updateUser';
 import { UserFormData, UserFormRequest, UserRole } from '../types/share/User';
 import { User } from '../types/share/User';
 import { useTokenStore } from './token/useTokenStore';
@@ -15,11 +16,15 @@ interface UseUserStoreSate {
     loadingGetUser: boolean;
     getCurrentUserFetch: () => Promise<void>;
     user: User | null;
+    loadingUpdateUser: boolean;
+    updateUser: (newUserPropertyValue : string) => Promise<void>;
+    userPropertyToUpdate: "name" | "lastname";
+    setUserPropertyToUpdate: (userPropertyToUpdate : "name" | "lastname") => void;
 
 }
 
 
-export const useUserStore = create<UseUserStoreSate>((set) => ({
+export const useUserStore = create<UseUserStoreSate>((set, get) => ({
 
     loadingRegisterUser: false,
     setLoadingRegisterUser: (loadingRegisterUser: boolean) => set({ loadingRegisterUser }),
@@ -42,8 +47,7 @@ export const useUserStore = create<UseUserStoreSate>((set) => ({
     getCurrentUserFetch: async () => {
         try {
             set({ loadingGetUser: true });
-            const token = useTokenStore.getState().accessToken;
-            const user = await getCurrentUser({ token })
+            const user = await getCurrentUser();
             set({ user })
 
         } catch (error) {
@@ -52,5 +56,21 @@ export const useUserStore = create<UseUserStoreSate>((set) => ({
             set({ loadingGetUser: false });
         }
     },
-    user: null
+    user: null,
+    loadingUpdateUser: false,
+    updateUser: async (newUserPropertyValue : string) => {
+        try {
+            set({ loadingUpdateUser: true });
+            const user = await updateUserService({
+                [get().userPropertyToUpdate] : newUserPropertyValue
+            });
+            set({user})
+        } catch (error) {
+            throw error;
+        } finally {
+            set({ loadingUpdateUser: false });
+        }
+    },
+    userPropertyToUpdate: "name",
+    setUserPropertyToUpdate: (userPropertyToUpdate : "name" | "lastname") => set({ userPropertyToUpdate })
 }))

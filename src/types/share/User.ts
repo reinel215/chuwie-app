@@ -29,6 +29,10 @@ export interface UserFormRequest extends Omit<UserFormData, "role"> {
     role: UserRole;
 }
 
+export type UpdateUserFieldForm = Partial<UserFormData>
+
+
+
 export interface User {
     country: string,
     docNumber: string,

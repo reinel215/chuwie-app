@@ -6,7 +6,7 @@ import { RegisterForm } from "../../Organism/RegisterForm/RegisterForm";
 export const CreateSubUser = () => {
     return (
         <SafeAreaWrapper edges={["left", "right"]}  >
-            <RegisterForm />
+            <RegisterForm onRegister={() => {}} />
         </SafeAreaWrapper>
     )
 }

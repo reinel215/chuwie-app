@@ -10,10 +10,18 @@ import { HorizontalLine } from "../../Atoms/HorizontalLine/HorizontalLine";
 import { useUserStore } from "../../../store/useUserStore";
 import { RowWithIcon } from "../../Molecules/RowWithIcon/RowWithIcon";
 import { Loading } from "../../Atoms/Loading/Loading";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 export const Profile = () => {
 
-    const { getCurrentUserFetch, loadingGetUser, user } = useUserStore(state => ({ getCurrentUserFetch: state.getCurrentUserFetch, loadingGetUser: state.loadingGetUser, user: state.user }));
+    const {
+        getCurrentUserFetch,
+        loadingGetUser,
+        user,
+        setUserPropertyToUpdate
+    } = useUserStore(state => ({ getCurrentUserFetch: state.getCurrentUserFetch, loadingGetUser: state.loadingGetUser, user: state.user, setUserPropertyToUpdate: state.setUserPropertyToUpdate }));
+
+    const navigation = useNavigation<NavigationProp<any>>();
 
     useEffect(() => {
         async function asyncFetch() {
@@ -27,9 +35,15 @@ export const Profile = () => {
     }, [])
 
 
+    const goToEdit = (userPropertyToUpdate: "name" | "lastname") => {
+        setUserPropertyToUpdate(userPropertyToUpdate);
+        navigation.navigate("EditUser");
+    }
+
+
 
     return (
-        <SafeAreaWrapper style={{ paddingHorizontal: 0 }}>
+        <SafeAreaWrapper style={{ paddingHorizontal: 0}} edges={["left", "right"]}>
             <View style={styles.topBarContainer}>
                 <View style={styles.iconContainer} >
                     <FontAwesome name="user-circle" size={70} color={theme.colors.textPrimary} />
@@ -52,7 +66,12 @@ export const Profile = () => {
                                         <Text>{user?.name}</Text>
                                     </View>
                                 }
-                                renderIcon={() => <MaterialIcons name="edit" size={25} color={theme.colors.primary} />}
+                                renderIcon={() => <MaterialIcons
+                                    name="edit"
+                                    size={25}
+                                    color={theme.colors.primary}
+                                />}
+                                onPressIcon={() => goToEdit("name")}
                             />
 
 
@@ -65,7 +84,12 @@ export const Profile = () => {
                                         <Text>{user?.lastname}</Text>
                                     </View>
                                 }
-                                renderIcon={() => <MaterialIcons name="edit" size={25} color={theme.colors.primary} />}
+                                renderIcon={() => <MaterialIcons
+                                    name="edit"
+                                    size={25}
+                                    color={theme.colors.primary}
+                                />}
+                                onPressIcon={() => goToEdit("lastname")}
                             />
 
 
