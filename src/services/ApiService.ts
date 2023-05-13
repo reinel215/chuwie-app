@@ -1,11 +1,18 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
 import { useTokenStore } from "../store/token/useTokenStore";
-
 
 export class ApiService {
   private readonly instance: AxiosInstance;
 
-  constructor({ baseUrl, headers }: { baseUrl: string; headers?: any }, errorInterceptor: (error: AxiosError) => void) {
+  constructor(
+    { baseUrl, headers }: { baseUrl: string; headers?: any },
+    errorInterceptor: (error: AxiosError) => void
+  ) {
     this.instance = axios.create({
       baseURL: baseUrl,
       timeout: 60000,
@@ -15,24 +22,24 @@ export class ApiService {
     this.instance.interceptors.request.use((request) => {
       const token = useTokenStore.getState().accessToken;
       request.headers = {
-        'Authorization': token
-      }
+        Authorization: token,
+      };
 
       return request;
-    })
-    this.instance.interceptors.response.use((response) => response, errorInterceptor);
+    });
+    this.instance.interceptors.response.use(
+      (response) => response,
+      errorInterceptor
+    );
   }
 
-  private readonly handleSuccess = (response: AxiosResponse) => response.data;
+  private readonly handleSuccess = (response: AxiosResponse) => response?.data;
 
   private readonly handleError = (error: any) => {
     throw error;
   };
 
-  get = <T>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<T> =>
+  get = <T>(url: string, config?: AxiosRequestConfig): Promise<T> =>
     this.instance
       .get(url, config)
       .then(this.handleSuccess)
@@ -47,7 +54,6 @@ export class ApiService {
       .post(url, bodyRq, config)
       .then(this.handleSuccess, this.handleError);
 
-
   put = <T>(
     url: string,
     bodyRq: unknown,
@@ -57,4 +63,4 @@ export class ApiService {
       .put(url, bodyRq, config)
       .then(this.handleSuccess, this.handleError);
 }
-4
+4;

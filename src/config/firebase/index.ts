@@ -2,8 +2,15 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
-import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId } from '../../../env.json';
+import { getAuth } from "firebase/auth";
+import {
+  apiKey,
+  authDomain,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId,
+} from "../../../env.json";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey,
@@ -11,8 +18,9 @@ const firebaseConfig = {
   projectId,
   storageBucket,
   messagingSenderId,
-  appId
+  appId,
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);

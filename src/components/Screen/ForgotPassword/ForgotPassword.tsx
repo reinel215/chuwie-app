@@ -1,22 +1,26 @@
 import React from "react";
 import { SafeAreaWrapper } from "../../Atoms/SafeAreaWrapper/SafeAreaWrapper";
 import { ForgotPasswordForm } from "../../Organism/ForgotPasswordForm/ForgotPasswordForm";
-import { sendPasswordResetEmail, getAuth } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { ResetPasswordForm } from "../../../types/share/User";
-import { app } from "../../../config/firebase";
-
+import { auth } from "../../../config/firebase";
+import { getFirebaseError } from "../../../helpers/getFirebaseError";
+import { useToast } from "react-native-toast-notifications";
 
 export const ForgotPassword = () => {
+  const toast = useToast();
 
-    const onCreateNewPassword = async ({ email }: ResetPasswordForm) => {
-        const auth = getAuth(app);
-        await sendPasswordResetEmail(auth, email);
-
+  const onCreateNewPassword = async ({ email }: ResetPasswordForm) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      toast.show(getFirebaseError(error), { type: "danger" });
     }
+  };
 
-    return (
-        <SafeAreaWrapper edges={["left", "right"]}>
-            <ForgotPasswordForm onCreateNewPassword={onCreateNewPassword} />
-        </SafeAreaWrapper>
-    )
-}
+  return (
+    <SafeAreaWrapper edges={["left", "right"]}>
+      <ForgotPasswordForm onCreateNewPassword={onCreateNewPassword} />
+    </SafeAreaWrapper>
+  );
+};

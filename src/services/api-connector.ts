@@ -1,11 +1,14 @@
 import { ApiService } from "./ApiService";
-import env from '../../env.json';
+import env from "../../env.json";
 import { AxiosError } from "axios";
 import { useTokenStore } from "../store/token/useTokenStore";
 import * as SecureStore from "expo-secure-store";
-import { IS_AUTH, TOKEN } from "../constants/secureStoreKeyNames/secureStoreKeyNames";
+import {
+  IS_AUTH,
+  TOKEN,
+} from "../constants/secureStoreKeyNames/secureStoreKeyNames";
 
-const baseDomain : any = env.baseUrl;
+const baseDomain: any = env.baseUrl;
 
 const connectionConfig = {
   baseUrl: baseDomain,
@@ -14,13 +17,17 @@ const connectionConfig = {
   },
 };
 
-const errorInterceptorResponseUnathorized = (error : AxiosError) => {
-  if (error.response?.status === 403){
-    SecureStore.deleteItemAsync(TOKEN)
-    SecureStore.deleteItemAsync(IS_AUTH)
-    useTokenStore.getState().setAuth(false)
-    useTokenStore.getState().setAccessToken("")
+const errorInterceptorResponseUnathorized = (error: AxiosError) => {
+  if (error?.response?.status === 403) {
+    SecureStore.deleteItemAsync(TOKEN);
+    SecureStore.deleteItemAsync(IS_AUTH);
+    useTokenStore.getState().setAuth(false);
+    useTokenStore.getState().setAccessToken("");
   }
-}
+  return Promise.reject(error);
+};
 
-export const apiConnector = new ApiService(connectionConfig, errorInterceptorResponseUnathorized );
+export const apiConnector = new ApiService(
+  connectionConfig,
+  errorInterceptorResponseUnathorized
+);
