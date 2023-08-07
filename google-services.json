@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "463919467827",
+    "project_id": "chuwie-81c03",
+    "storage_bucket": "chuwie-81c03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463919467827:android:6854a4062fc135bd36c246",
+        "android_client_info": {
+          "package_name": "com.chuwie.chuwie_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463919467827-4h9qlm4pogco3mfnfc0amua78h86mcvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chuwie.chuwie_app",
+            "certificate_hash": "2ee347277c83d07e7b271dcb2d69e5522b02b594"
+          }
+        },
+        {
+          "client_id": "463919467827-qfrns5r56i6ejq8fb5iru663tecu0ote.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chuwie.chuwie_app",
+            "certificate_hash": "8c6302f8cdc00a742319c1c30d054f0d88e18b3a"
+          }
+        },
+        {
+          "client_id": "463919467827-87s1616a8pf8nogm7qfvlmjlkg8u0iqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWXPk9nZI9l2uQVpr1H-Jk9yg0pP3qjrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463919467827-87s1616a8pf8nogm7qfvlmjlkg8u0iqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

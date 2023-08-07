@@ -1,44 +1,47 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { TouchableOpacity } from "react-native";
-import { Profile } from "../../Screen/Profile/Profile";
-import { EditUser } from "../../Screen/EditUser/EditUser";
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Profile } from '../../Screen/Profile/Profile'
+import { EditUser } from '../../Screen/EditUser/EditUser'
+import { PROFILE, EDIT_USER } from '../../../routes/Profile'
+import { stackheaderOptions } from '../utils/headerOptions'
+import { NavigationProp } from '@react-navigation/native'
 
-const Stack = createNativeStackNavigator();
+export type ProfileStackParamList = {
+    [PROFILE]: undefined
+    [EDIT_USER]: undefined
+}
+
+const Stack = createNativeStackNavigator<ProfileStackParamList>()
 
 export const ProfileNavigator = () => {
+    const onPressBack = (navigation: NavigationProp<ProfileStackParamList>) => {
+        navigation.goBack()
+    }
 
     return (
         <Stack.Navigator>
-
             <Stack.Screen
-                name="Profile"
+                name={PROFILE}
                 component={Profile}
-                options={({navigation}) => ({
-                    title: "",
-                    headerTitleAlign: "center",
-                    headerLeft: () => (
-                        <TouchableOpacity onPress={() => navigation.goBack()} >
-                            <AntDesign name="left" size={20} />
-                        </TouchableOpacity>
-                    ),
-                    headerShadowVisible: false
-                })}
+                options={(props) =>
+                    stackheaderOptions({
+                        ...props,
+                        title: '',
+                        onPressBack: () => onPressBack(props.navigation),
+                    })
+                }
             />
 
             <Stack.Screen
-                name="EditUser"
+                name={EDIT_USER}
                 component={EditUser}
-                options={({navigation}) => ({
-                    title: "Editar usuario",
-                    headerTitleAlign: "center",
-                    headerLeft: () => (
-                        <TouchableOpacity onPress={() => navigation.goBack()} >
-                            <AntDesign name="left" size={20} />
-                        </TouchableOpacity>
-                    )
-                })}
+                options={(props) =>
+                    stackheaderOptions({
+                        ...props,
+                        title: 'Editar usuario',
+                        onPressBack: () => onPressBack(props.navigation),
+                    })
+                }
             />
         </Stack.Navigator>
     )

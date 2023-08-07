@@ -16,8 +16,6 @@ import {
 import { auth } from "../config/firebase";
 import { getFirebaseError } from "../helpers/getFirebaseError";
 
-//web: 463919467827-u1cjt21ql0o2tm4fm6upjb8j2243k8vj.apps.googleusercontent.com
-//android: 463919467827-3h3q1lppb9ee45g8c6kp77csnttu62jc.apps.googleusercontent.com
 export enum LoginMethods {
   PASSWORD = "password",
   GOOGLE = "google",

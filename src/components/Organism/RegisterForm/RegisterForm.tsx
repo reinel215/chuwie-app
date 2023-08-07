@@ -1,61 +1,76 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
-import { ISelectData } from "../../../types/share/ISelectData";
-import { UserFormData, UserRole } from "../../../types/share/User";
-import { CustomButton } from "../../Atoms/CustomButton/CustomButton";
-import { OutlinedTextInput } from "../../Atoms/OutlinedTextInput/OutlinedTextInput";
-import { PasswordInput } from "../../Atoms/PasswordInput/PasswordInput";
-import { Select } from "../../Atoms/Select/Select";
-
-
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { ScrollView, StyleSheet, View } from 'react-native'
+import { Text } from 'react-native-paper'
+import { ISelectData } from '../../../types/share/ISelectData'
+import { UserFormData, UserRole } from '../../../types/share/User'
+import { CustomButton } from '../../Atoms/CustomButton/CustomButton'
+import { OutlinedTextInput } from '../../Atoms/OutlinedTextInput/OutlinedTextInput'
+import { PasswordInput } from '../../Atoms/PasswordInput/PasswordInput'
+import { Select } from '../../Atoms/Select/Select'
 
 const roles: ISelectData[] = [
     {
-        label: "Veterinario",
-        value: UserRole.VETERINARIO
+        label: 'Veterinario',
+        value: UserRole.VETERINARIO,
     },
     {
-        label: "Rescatista",
-        value: UserRole.RESCATISTA
+        label: 'Rescatista',
+        value: UserRole.RESCATISTA,
     },
     {
-        label: "Soporte",
-        value: UserRole.SOPORTE
+        label: 'Soporte',
+        value: UserRole.SOPORTE,
     },
     {
-        label: "Administrativo",
-        value: UserRole.ADMINISTRATIVO
+        label: 'Administrativo',
+        value: UserRole.ADMINISTRATIVO,
     },
     {
-        label: "Legal",
-        value: UserRole.LEGAL
+        label: 'Legal',
+        value: UserRole.LEGAL,
     },
     {
-        label: "Alimentos",
-        value: UserRole.ALIMENTOS
-    }
+        label: 'Alimentos',
+        value: UserRole.ALIMENTOS,
+    },
 ]
 
 interface RegisterFormProps {
-    onRegister : (user : UserFormData) => void
-    isLoading? : boolean;
+    onRegister: (user: UserFormData) => void
+    isLoading?: boolean
+    isSubUser?: boolean
 }
 
-export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
+const signupText = {
+    title: 'Crea una cuenta',
+    description:
+        'Al crear una cuenta podras; reportar incidentes que pongan en peligro a las perezas, hacer un seguimiento del rescate y ver otras perezas rescatadas ',
+}
 
-    const { control, handleSubmit } = useForm<any>();
+const createSubUserText = {
+    title: 'Crea un sub-usuario',
+    description:
+        'Al crear un sub-usuario; se le asignara la contraseña que indiques, podras verlo en la seccion de "Gestión de usuario" donde podras editarlo o eliminarlo.',
+}
 
+export const RegisterForm = ({
+    onRegister,
+    isLoading,
+    isSubUser = false,
+}: RegisterFormProps) => {
+    const { control, handleSubmit } = useForm<any>()
+
+    const text = isSubUser ? createSubUserText : signupText
 
     return (
         <View style={styles.container}>
+            <ScrollView contentContainerStyle={{ paddingHorizontal: 16 }}>
+                <Text style={styles.verticalMargin}>{text.title}</Text>
 
-            <ScrollView contentContainerStyle={{paddingHorizontal: 16}}>
-                <Text style={styles.verticalMargin}>Crea una cuenta</Text>
-
-                <Text style={styles.verticalMargin}>Al crear una cuenta podras; reportar incidentes que pongan en peligro a las perezas, hacer un seguimiento del rescate y ver otras perezas rescatadas </Text>
-
+                <Text style={styles.verticalMargin}>
+                    {text.description + ' '}
+                </Text>
 
                 <View style={styles.verticalMargin}>
                     <OutlinedTextInput
@@ -64,7 +79,6 @@ export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
                         name="name"
                     />
                 </View>
-
 
                 <View style={styles.verticalMargin}>
                     <OutlinedTextInput
@@ -83,7 +97,6 @@ export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
                 </View>
 
                 <View style={styles.verticalMargin}>
-
                     <OutlinedTextInput
                         label="País"
                         control={control}
@@ -92,7 +105,6 @@ export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
                 </View>
 
                 <View style={styles.verticalMargin}>
-
                     <OutlinedTextInput
                         label="Documento de identidad"
                         control={control}
@@ -109,15 +121,12 @@ export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
                     />
                 </View>
 
-
                 <View style={styles.verticalMargin}>
-
                     <PasswordInput
                         label="Crea tu contraseña"
                         control={control}
                         name="password"
                     />
-
                 </View>
 
                 <View style={styles.verticalMargin}>
@@ -129,27 +138,28 @@ export const RegisterForm = ({onRegister, isLoading} : RegisterFormProps) => {
                 </View>
             </ScrollView>
 
-
-            <View style={styles.buttonWrapper} >
-                <CustomButton text={"Crear cuenta"} onPress={handleSubmit(onRegister)} loading={isLoading}/>
+            <View style={styles.buttonWrapper}>
+                <CustomButton
+                    text={'Crear cuenta'}
+                    onPress={handleSubmit(onRegister)}
+                    loading={isLoading}
+                />
             </View>
         </View>
     )
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
     verticalMargin: {
-        marginBottom: 16
+        marginBottom: 16,
     },
     buttonWrapper: {
         flex: 1,
-        justifyContent: "flex-end",
+        justifyContent: 'flex-end',
         marginBottom: 20,
-        minHeight: 50
-    }
-});
+        minHeight: 50,
+    },
+})

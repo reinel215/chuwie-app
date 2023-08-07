@@ -4,21 +4,20 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { useUserStore } from '../../../store/useUserStore'
 import { theme } from '../../../config/theme-config'
-import { EDIT_USER, PROFILE } from '../../../routes/Profile'
-import { SafeAreaWrapper } from '../../Atoms/SafeAreaWrapper/SafeAreaWrapper'
+import { UserStackParamList } from '../../Navigation/UserNavigator/UserNavigator'
+import { SUB_USER_PROFILE, EDIT_SUB_USER } from '../../../routes/UserManager'
 import { UserData } from '../../Organism/UserData/UserData'
-import { useProfileInfo } from '../../../hooks/query/user/useProfileInfo'
-import { useNavigationState } from '@react-navigation/native'
-import { ProfileStackParamList } from '../../Navigation/ProfileNavigator/ProfileNavigator'
+import { SafeAreaWrapper } from '../../Atoms/SafeAreaWrapper/SafeAreaWrapper'
+import { useSubUserProfileInfo } from '../../../hooks/query/user/useSubUserProfileInfo'
 
-type ProfileProps = NativeStackScreenProps<
-    ProfileStackParamList,
-    typeof PROFILE
+type SubUserProfileProps = NativeStackScreenProps<
+    UserStackParamList,
+    typeof SUB_USER_PROFILE
 >
 
-export const Profile = ({ navigation }: ProfileProps) => {
-    const { isFetching, data: user } = useProfileInfo()
-    const state = useNavigationState((state) => state)
+export const SubUserProfile = ({ route, navigation }: SubUserProfileProps) => {
+    const { userId } = route.params
+    const { isFetching, data: user } = useSubUserProfileInfo({ userId })
 
     const { setUserPropertyToUpdate } = useUserStore((state) => ({
         setUserPropertyToUpdate: state.setUserPropertyToUpdate,
@@ -26,7 +25,7 @@ export const Profile = ({ navigation }: ProfileProps) => {
 
     const goToEdit = (userPropertyToUpdate: 'name' | 'lastname') => {
         setUserPropertyToUpdate(userPropertyToUpdate)
-        navigation.navigate(EDIT_USER)
+        navigation.navigate(EDIT_SUB_USER)
     }
 
     return (
