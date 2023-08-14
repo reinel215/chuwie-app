@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { EditUser } from '../../Screen/EditUser/EditUser'
 import {
     USER_LIST,
     EDIT_SUB_USER,
@@ -10,10 +9,11 @@ import { UserManager } from '../../Screen/UserList/UserList'
 import { NavigationProp } from '@react-navigation/native'
 import { SubUserProfile } from '../../Screen/SubUserProfile/SubUserProfile'
 import { stackheaderOptions } from '../utils/headerOptions'
+import { EditSubUser } from '../../Screen/EditSubUser/EditSubUser'
 
 export type UserStackParamList = {
     [SUB_USER_PROFILE]: { userId: string }
-    [EDIT_SUB_USER]: undefined
+    [EDIT_SUB_USER]: { userId: string }
     [USER_LIST]: undefined
 }
 
@@ -40,7 +40,7 @@ export const UserNavigator = () => {
 
             <Stack.Screen
                 name={EDIT_SUB_USER}
-                component={EditUser}
+                component={EditSubUser}
                 options={(props) =>
                     stackheaderOptions({
                         ...props,

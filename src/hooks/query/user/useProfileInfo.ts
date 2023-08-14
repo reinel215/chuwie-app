@@ -2,6 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import { userProfileKeys } from './userQueryKeys'
 import { getCurrentUser } from '../../../services/user/getCurrentUser'
 
-export const useProfileInfo = () => {
-    return useQuery(userProfileKeys.all, () => getCurrentUser())
+interface UseProfileInfoProps {
+    enabled?: boolean
+}
+
+export const useProfileInfo = ({ enabled = true }: UseProfileInfoProps) => {
+    return useQuery(userProfileKeys.all, () => getCurrentUser(), {
+        enabled,
+    })
 }

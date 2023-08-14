@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
@@ -25,7 +25,7 @@ export const SubUserProfile = ({ route, navigation }: SubUserProfileProps) => {
 
     const goToEdit = (userPropertyToUpdate: 'name' | 'lastname') => {
         setUserPropertyToUpdate(userPropertyToUpdate)
-        navigation.navigate(EDIT_SUB_USER)
+        navigation.navigate(EDIT_SUB_USER, { userId })
     }
 
     return (

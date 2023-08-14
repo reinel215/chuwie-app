@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
@@ -8,7 +8,7 @@ import { EDIT_USER, PROFILE } from '../../../routes/Profile'
 import { SafeAreaWrapper } from '../../Atoms/SafeAreaWrapper/SafeAreaWrapper'
 import { UserData } from '../../Organism/UserData/UserData'
 import { useProfileInfo } from '../../../hooks/query/user/useProfileInfo'
-import { useNavigationState } from '@react-navigation/native'
+import { useFocusEffect, useNavigationState } from '@react-navigation/native'
 import { ProfileStackParamList } from '../../Navigation/ProfileNavigator/ProfileNavigator'
 
 type ProfileProps = NativeStackScreenProps<
@@ -17,8 +17,17 @@ type ProfileProps = NativeStackScreenProps<
 >
 
 export const Profile = ({ navigation }: ProfileProps) => {
-    const { isFetching, data: user } = useProfileInfo()
-    const state = useNavigationState((state) => state)
+    const {
+        isLoading,
+        data: user,
+        refetch,
+    } = useProfileInfo({ enabled: false })
+
+    useFocusEffect(
+        useCallback(() => {
+            refetch()
+        }, [])
+    )
 
     const { setUserPropertyToUpdate } = useUserStore((state) => ({
         setUserPropertyToUpdate: state.setUserPropertyToUpdate,
@@ -44,7 +53,7 @@ export const Profile = ({ navigation }: ProfileProps) => {
                 </View>
             </View>
 
-            <UserData user={user} loading={isFetching} goToEdit={goToEdit} />
+            <UserData user={user} loading={isLoading} goToEdit={goToEdit} />
         </SafeAreaWrapper>
     )
 }

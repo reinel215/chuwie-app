@@ -23,7 +23,7 @@ export const CreateSubUser = ({ navigation }: SubUserProfileProps) => {
     const onRegister = async (user: UserFormData) => {
         try {
             await registerUser(user)
-            toast.show('Usuario registrado exitosamente!', { type: 'success' })
+            toast.show('Sub-usuario creado exitosamente!', { type: 'success' })
             navigation.goBack()
         } catch (error: any) {
             toast.show(error, { type: 'danger' })

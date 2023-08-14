@@ -15,7 +15,6 @@ type UserManagerProps = NativeStackScreenProps<
     UserStackParamList,
     typeof USER_LIST
 >
-//TODO FALTA CREAR SUB USARIO DESDE LA LISTA
 export const UserManager = ({ navigation }: UserManagerProps) => {
     const [showModal, setShowModal] = useState(false)
     const [user, setUser] = useState<User | null>(null)
@@ -44,7 +43,6 @@ export const UserManager = ({ navigation }: UserManagerProps) => {
         onSuccess: fetchUserList,
     })
 
-    //TODO: fix bug al editar un subusario edita el propio usaurio del admin
     const onEdit = (user: User) => {
         navigation.navigate(SUB_USER_PROFILE, { userId: user.uid })
     }
